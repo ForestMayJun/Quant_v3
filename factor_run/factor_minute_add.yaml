@@ -1,0 +1,9 @@
+minute_dir: minute_h5_data/
+factor_minue_dir: ./factor_minute_add/
+factor_dir: ./factor/
+stock_name_list: universe_today.csv
+factor_names: [1, 14]
+factor_names_normal: factor0
+factor_names_stand: [1183, 1196]
+factor_names_stand_normal: factor0
+start_date: 20171010

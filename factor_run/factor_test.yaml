@@ -1,0 +1,97 @@
+factor_evaluator:
+  cache_data_path: /mnt/data/quant_data/factor_data
+  univ_data_path: /mnt/data/quant_data/stock_universe/
+  target_univ: "stock_universe"
+  start_date: "2021-01-01"
+  end_date: "2023-12-31"
+  max_parallel: 40
+  target_exec_time_point:
+    - "09:30"
+    # - "10:00"
+    - "10:30"
+    # - "11:00"
+    # # - "13:00"
+    # - "13:30"
+    - "14:00"
+    # - "14:30"
+  price_type:
+    # - "1m_twap"
+    - "1m_vwap"
+    # - "5m_vwap"
+    # - "10m_vwap"
+    - "30m_vwap"
+    # - "to_close_vwap"
+  clickhouse_layer:
+    host: data_chdb.shifengamc.com
+    port: "9000"
+    user: "zyzhang"
+    password: "In9SEts5T65g"
+
+eval_job:
+  factor_data_path: /mnt/datadisk2/aglv/aglv/lab_aglv/aglv_factor/Sep/
+  output_dir: /mnt/datadisk2/aglv/aglv/lab_aglv/aglv_factor_test/Sep/
+  num_grp_pnl: 10
+  num_grp_ic: 5
+  factor_name:
+    # - 'turn_cvar_posi_noavg_21_23_min'
+    # - 'turn_cvar_posi_noavg_21_23_destop_min'
+    # - 'turn_cvar_posi_mul-ret-abs_noavg_21_23_destop_min'
+    # - 'turn_cvar_posi_mul-ret__noavg_21_23_destop_min'
+    # - 'turnstd_r5mean_avg20d_21_23min'
+    # - 'turnstd_agg5min_noavg_21_23_min'
+    # - 'turn_diffabs_agg10min_noavg_21_23_min'
+    # - 'nightret_r3mean'
+    # - 'ret_turn_corr_21_min'
+    # - 'ret_turn_corr_spearman_21_min'
+    # - 'ret_turn_corr_agg10_21_min'
+    # - 'p_vol_corr_r15_daily'
+    # - 'close_vol_shift_corr_cwin_15_swin_5'
+    # - 'price_vol_weight_corr_v2_ret0_r15_day'
+
+    # - 'sigmoid_ret_vol_corr_r15'
+    # - 'sigmoid_ret_r15sum_vol_corr_r15'
+    # - 'sigmoid_indayret_r15sum_vol_corr_r15'
+    # - 'sigmoid_nightret_r15sum_vol_corr_r15'
+    # - 'sigmoid_nightret_v2_r15sum_vol_corr_r15'
+    # - 'relu_nightret_r15sum_vol_corr_r15'
+    # - 'relu_indayret_r15sum_vol_corr_r15'
+    # - 'nightret_r15sum_vol_corr_r15'
+    # - 'indayret_r15sum_vol_corr_r15'
+    # - 'nightret_r15prod_vol_corr_r15'
+    # - 'tanh_nightret_r15sum_vol_corr_r15'
+    # - 'tanh_nightret_r15sum_vol_zs_corr_r15'
+    # - 'relu_nightret_r15sum_vol_zs_corr_r15'
+    # - 'relu_nightret_r15mean_vol_zs_corr_r15' -不粗 记住fa1
+    # - 'relu_nightret_vol_zs_corr_r15'
+    # - 'sigmoid_nightret_vol_zs_corr_r15'
+    # - 'abs_nightret_r15mean_vol_zs_corr_r15' 
+    # - 'leakyrelu_0.1_nightret_r15mean_vol_zs_corr_r15'
+    # - 'leakyrelu_0.1_indayret_r15mean_vol_zs_corr_r15'
+    # - 'relu_nightret_r30mean_vol_zs_corr_r30'
+    # - 'relu_nightret_r5mean_vol_zs_corr_r15'
+    # - 'relu_nightret_r5mean_vol_zs_dot_r15' - 还不错 多空两天都有表现 corrwith fa1 = 0.08
+    # - 'relu_nightret_r15mean_vol_zs_p2dot_r15' - 没什么用
+    # - 'relu_nightret_r15mean_pow3_vol_zs_dot_r15' - 没用
+    # - 'relu_nightret_r15mean_pow3_vol_zs_cos_r15' - 还行 效果类似corr因子
+    # - 'negrelu_nightret_r15mean_vol_zs_corr_r15' -还行 多头因子 但是跟fa1 corr=-0.7
+    # - 'leakyrelu_0.01_nightret_r15mean_vol_zs_corr_r15' -还行 corrwith fa1 = 0.59
+    # - 'relu_nightret_r15mean_vol_zs_shift1_corr_r15' - 效果不如不shift
+    # - '1or-1_nightret_r15mean_vol_zs_shift1_corr_r15'
+    # - 'true_relu_nightret_r15mean_vol_zs_shift1_corr_r15' - 一般般 不如fa1
+    # - 'true_relu_nightret_r15sum_vol_zs_shift1_corr_r15'
+    # - 'relu_indayret_r15sum_vol_zs_dot_r15' -貌似还行
+    # - 'relu_nightret_r5mean_vol_zs_corr_shift2_r15' -不行 shift之后效果明显变差
+    
+
+
+
+
+  delay_days:
+  - 1
+  # - 3
+  - 5
+  # - 10
+
+# run_evaljob_local /mnt/datadisk2/aglv/aglv/lab_aglv/factor_run/factor_test.yaml
+
+# facteval-res-viewer /mnt/datadisk2/aglv/aglv/lab_aglv/factor_run/factor_test.yaml
