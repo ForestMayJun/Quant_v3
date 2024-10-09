@@ -28,8 +28,8 @@ factor_evaluator:
     password: "In9SEts5T65g"
 
 eval_job:
-  factor_data_path: /mnt/datadisk2/aglv/aglv/lab_aglv/aglv_factor/Sep/
-  output_dir: /mnt/datadisk2/aglv/aglv/lab_aglv/aglv_factor_test/Sep/
+  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/Oct_factor/
+  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/Oct_factor/
   num_grp_pnl: 10
   num_grp_ic: 5
   factor_name:
@@ -82,8 +82,10 @@ eval_job:
     # - 'relu_indayret_r15sum_vol_zs_dot_r15' -貌似还行
     # - 'relu_nightret_r5mean_vol_zs_corr_shift2_r15' -不行 shift之后效果明显变差
     
+    # - 'relu_night-inday_ret_r15mean_vol_zs_corr_r15'
+    # - 'relu_indayret_r15sum_relu_vol_zs_dot_r15'
 
-
+    - 'min30_reverse_multi'
 
 
   delay_days:
