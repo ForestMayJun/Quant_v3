@@ -85,7 +85,8 @@ eval_job:
     # - 'relu_night-inday_ret_r15mean_vol_zs_corr_r15'
     # - 'relu_indayret_r15sum_relu_vol_zs_dot_r15'
 
-    - 'min30_reverse_multi'
+    # - 'min30_reverse_multi'
+    - 'cvar_l-r_ret_r30'
 
 
   delay_days:
