@@ -28,8 +28,8 @@ factor_evaluator:
     password: "In9SEts5T65g"
 
 eval_job:
-  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/Oct_factor/
-  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/Oct_factor/
+  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/bs_book2/
+  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/bs_book2/
   num_grp_pnl: 10
   num_grp_ic: 5
   factor_name:
@@ -86,7 +86,80 @@ eval_job:
     # - 'relu_indayret_r15sum_relu_vol_zs_dot_r15'
 
     # - 'min30_reverse_multi'
-    - 'cvar_l-r_ret_r30'
+    # - 'cvar_l-r_ret_r30'
+    # - 'night_ret_cvar_r20_0.9.neg'
+    # - 'ret20power_night_ret_cvar_r20_0.9.neg'
+    # - 's1_ret20power_night_ret_cvar_r20_0.9.neg'
+    # - 'vol20power_night_ret_cvar_r20_0.9.neg'
+    # - 'retstd20power_night_ret_cvar_r20_0.9.neg'
+    # - 'vol20_relu_nightret_r5mean_vol_zs_dot_r15'
+    # - 'retstd20_relu_nightret_r5mean_vol_zs_dot_r15'
+    # - 'ret30min_cvar_09_r20_low'
+    # - 'turn_std20'
+    # - 'ret20_turn_std20'
+    # - 'asym_p_series_r20'
+    # - 'ret20_asym_p_series_r20'
+    # - 'vol20_asym_p_series_r20'
+    # - 'afno30_ret_cvar_neg_09_r20'
+    # - 'afno30_ret_cvar_neg_09_r20'
+    # - 'afno30_ret_asym_neg_09_r20'
+    # - 'morn_afno_30_ret_r20corr' 还不错 很稳定
+    # - 'night_afno10min_ret_r20corr'
+    # - 'vol20_morn_afno_30_ret_r20corr'
+    # - 'vol20std_morn_afno_30_ret_r20corr'
+    # - 'pca_10feat_to2_feat1'
+    # - 'pca_10feat_to2_feat2'
+    # - 'inday_ret'
+    # - 'night_s1_afno30min_ret_r20corr'
+    # - 'night_r30mean_s1_afno30min_ret_r20corr'
+
+    # - 'buy_mean_devide_std_r20' 还不错 负向因子
+    # - 'b_ane_s_square_sum'
+    # - 'b_ane_s_square_sum_r1mean'
+    # - 'buy_max_devide_std_r20'
+    # - 'ret20_b_ane_s_square_sum_r1mean'
+    # - 'xl_b_ane_s_square_sum_r10mean'
+
+    # - 'b_s_xl_ratio'
+    # - 'b_s_l_ratio' 这两个都不行
+    # - 'b_r5_max_std_ratio' 这个还可以 比下面连个好
+    # - 'b_r10_max_std_ratio'
+    # - 'b_r20_max_std_ratio'
+    # - 'b_r5_min_std_ratio' 这个略好一点
+    # - 'b_r10_min_std_ratio'
+    # - 'b_r20_min_std_ratio'
+    # - 'b_r5_std_ratio'
+    # - 'b_r10_std_ratio' 这个比较好 还行
+    # - 'b_r20_std_ratio'
+    # - 'b_b_act_l_ratio'
+    # - 'b_b_act_l_ratio_r10_mean' 还行 难得的多头因子
+    # - 'b_act_r5_std_ratio'
+    # - 'b_act_r10_std_ratio' 不错不错 曲线很稳定
+    # # - 'b_act_r20_std_ratio'
+    # - 's_act_r5_std_ratio'
+    # - 's_act_r10_std_ratio'
+    # - 's_act_r20_std_ratio'
+    # - 'buy_l_s_ratio' 有点过于稳了 负向因子 大买单和小买单的比值
+    # - 'buy_l_s_ratio_r5_std_ratio'
+    # - 'buy_l_s_ratio_r10_std_ratio'
+    # - 'buy_l_s_ratio_r20_std_ratio' 还不错 比原始数据略有增强
+    # - 'buy_l_order_ret20_ratio'
+    # - 'buy_l_order_ret20_ratio_r10sd_ratio' 这两个都不太行 本来想过滤掉ret20的影响的
+    # - 'buy_l_order_corr_ret' 完全不行
+    # - 'exce_buy_l_order'  下面四个是一组  非常奇怪 没有标准化的因子竟然效果更好
+    # - 'exce_buy_l_order_r10_std_ratio' 每组稳定 但是顺序不对
+    # - 'exce_buy_l_order_demean'
+    # - 'exce_buy_l_order_demean_r10_std_ratio'
+    # - 'exce_buy_l_order_per'
+    # - 'exce_buy_s_order'
+    # - 'exce_ret_buy_l_order_demean'
+    # - 'exce_ret_buy_l_order'
+
+    # - 'cd_exce_ret_buy_l_order_demean'
+    # - 'buy_l_order_act_demean'
+    # - 'neu_ret_buy_l_order_act_demean'
+    # - 'buy_l_order_ret20_std_ratio' 垃圾
+    - 'buy_l_order_vol20_std_ratio'
 
 
   delay_days:
