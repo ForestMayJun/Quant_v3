@@ -6,6 +6,7 @@ import numpy as np
 from tqdm import tqdm
 import sys
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 sys.path.append('/mnt/datadisk2/aglv/aglv/lab_aglv/forintern/')
 from DataDaily import DataDaily
@@ -226,6 +227,94 @@ def factors_corr(factor_folder):
     sns.heatmap(corrs.astype(float), annot=True, cmap='Greens', fmt=".2f")
     plt.title('Correlation with Means Heatmap')
     plt.show()
+
+
+def factor_distribution_plot(data):
+    '''
+    将因子值二维数组转化为分布图形式
+    '''
+    import seaborn as sns
+
+    if len(data.shape) > 1:
+        data = data.stack()
+
+    plt.figure(figsize=(10, 6))
+
+    plt.hist(data, bins=30, density=True, alpha=0.6, color='skyblue', edgecolor='black', label='Histogram')
+    sns.kdeplot(data, color='red', label='KDE')
+
+    plt.title('Data Distribution')
+    plt.xlabel('Value')
+    plt.ylabel('Density')
+    plt.legend()
+
+    plt.show()
+
+def factor_self_corr(factor:pd.DataFrame, gap=1, win=20):
+    '''因子自相关性检测'''
+    if len(factor.shape) < 1:
+        if 'date' in factor.columns:
+            factor = factor.set_index('date')
+        elif 'Date' in factor.columns:
+            factor = factor.set_index('Date')
+    
+    factor.index = [str(i) for i in factor.index]
+
+    factor_corr = factor.rolling(win).apply(lambda x: x.corr(x.shift(-1)))
+
+    plt.figure(figsize=(12, 6))
+    plt.plot(factor_corr)
+    plt.tight_layout()
+    plt.xticks(ticks=range(0, len(factor_corr), max(1, len(factor_corr)//10)), 
+               labels=factor_corr.index[::max(1, len(factor_corr)//10)], rotation=45)
+    plt.show()
+
+def factor_plot(factor:pd.DataFrame, gap=1, win=20):
+    '''因子值绘图检测'''
+    if len(factor.shape) < 1:
+        if 'date' in factor.columns:
+            factor = factor.set_index('date')
+        elif 'Date' in factor.columns:
+            factor = factor.set_index('Date')
+    
+    factor.index = [str(i) for i in factor.index]
+
+    plt.figure(figsize=(12, 6))
+    plt.plot(factor, color='#FF9999')
+    plt.tight_layout()
+    plt.xticks(ticks=range(0, len(factor), max(1, len(factor)//10)), 
+               labels=factor.index[::max(1, len(factor)//10)], rotation=45)
+    plt.title(f'Factor Plot')
+    plt.show()
+
+def ic_plot(factor, ret):
+    '''绘制月度ic和累计ic情况'''
+    def get_ic_series(factor, ret):
+        icall = pd.DataFrame()
+        fall = pd.merge(factor, ret, left_on=['date', 'stock'], right_on=['date', 'stock'])
+        icall = fall.groupby('date').apply(lambda x : x.corr()['ret']).reset_index()
+        icall = icall.dropna().drop(['ret'], axis=1).set_index('date')
+
+        return icall
+    
+    ic_f = get_ic_series(factor, ret)
+    f_name = ic_f.columns[0]
+    fig = plt.figure(figsize=(12, 6))
+    ax = plt.axes()
+    xtick = np.arange(0, ic_f.shape[0], 20)
+    xtick_label = pd.Series(ic_f.index[xtick])
+    plt.bar(np.arange(ic_f.shape[0]), ic_f[f_name], color='darkred')
+    
+    ax1 = plt.twinx()
+    ax1.plot(np.arange(ic_f.shape[0], ic_f.cumsum(), color='orange'))
+
+    ax.set_xticks(xtick)
+    ax.set_yticks(xtick_label)
+
+    plt.show()
+
+
+
 
 def main():
     pass

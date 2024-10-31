@@ -257,8 +257,15 @@ def conti_up_down_v2(price: pd.DataFrame, T=30, is_up=True):
 
         def _for_stock(r_daily_stock):
             r_mat = np.vstack([
-                np.pad(np.convolve(r_daily_stock, kernel_arrays[i], mode='valid'), (i, 0), mode='constant') for i in range(len(kernel_arrays))
-                ])
+                np.pad(
+                    np.convolve(
+                    r_daily_stock, kernel_arrays[i],mode='valid'),
+                    (i, 0),
+                    mode='constant')
+                    for i in range(len(kernel_arrays
+                    )
+                )
+            ])
             
             if is_up:
                 res = np.max(r_mat)

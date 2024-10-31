@@ -28,8 +28,8 @@ factor_evaluator:
     password: "In9SEts5T65g"
 
 eval_job:
-  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/bs_book2/
-  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/bs_book2/
+  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/fa_transform/
+  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/fa_transform/
   num_grp_pnl: 10
   num_grp_ic: 5
   factor_name:
@@ -159,8 +159,52 @@ eval_job:
     # - 'buy_l_order_act_demean'
     # - 'neu_ret_buy_l_order_act_demean'
     # - 'buy_l_order_ret20_std_ratio' 垃圾
-    - 'buy_l_order_vol20_std_ratio'
+    # - 'buy_l_order_vol20_std_ratio' 垃圾
+    # - 'buy_l_minu_s_order_vol_ratio'
+    # - 'buy_l_order_demean_mul_r10_std'
+    # - 'buy_l_order_demean_devid_r10_std'
+    # - 'last30min_ret'
+    # - 'buy_l_act_r3_mean_std_ratio'
+    # - 'buy_l_act_r5_mean_std_ratio'
+    # - 'buy_l_act_r10_mean_std_ratio'
+    
+    # 研究扭转因子  /fa_transform/
+    # - 'exce_l_buy'
+    # - 'exce_l_buy_r5mean_ratio'
+    # - 'exce_buy_l_per' 还不错 难得的强空头性因子
+    # - 'exce_buy_l_per_overmean'
+    # - 'exce_buy_l_log' 取对数后效果明显提升
+    # - 'exce_buy_l_abs_log'
+    # - 'exce_buy_l_per_log' 很一般
+    # - 'pure_buy_l'
+    # - 'pure_buy_l_per' 和上面是非常神奇的两个因子，组间清晰组别不清晰
+    # - 'pure_buy_l_log'
+    # - 'pure_buy_l_abs_log'
+    # - 'pure_buy_l_per_abs_log'
+    # - 'pure_buy_l_per_log'
+    # - 'pure_buy_l_per_log_trans'
+    # - 'pure_buy_l_per_log_trans_os'
+    # - 'pure_buy_l_per_log_trans_os19to20'
+    # - 'pure_b_os_log'
+    # - 'pure_buy_l_per_log_trans'
+    # - 'pure_ret_buy_is'
+    # - 'pure_ret_buy_is_log' 这两个很垃圾
+    # - 'pure_buy_ret_log' 还行 21年无表现 22年还可以
+    # - 'buy_ret'
+    # - 'buy_ret_act'
+    # - 'buy_ret_act_log' 不错
+    # - 'buy_ret_act_os_log'
+    # - 'buy_ret_act_trans'
+    # - 'buy_ret_act_r10mean'
+    # - 'buy_ret_act_r5mean'
+    # - 'buy_ret_act_r3mean' 上面这三个空头性有点强
+    # - 'buy_ret_act_trans2'
+    # - 'buy_ret_act_trans2_log'
+    - 'buy_per_ret_log'
+    - 'buy_per_ret'
 
+ 
+ 
 
   delay_days:
   - 1
