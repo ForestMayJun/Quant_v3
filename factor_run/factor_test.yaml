@@ -28,8 +28,8 @@ factor_evaluator:
     password: "In9SEts5T65g"
 
 eval_job:
-  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/fa_transform/
-  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/fa_transform/
+  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/bs_book3/
+  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/bs_book3/
   num_grp_pnl: 10
   num_grp_ic: 5
   factor_name:
@@ -200,11 +200,62 @@ eval_job:
     # - 'buy_ret_act_r3mean' 上面这三个空头性有点强
     # - 'buy_ret_act_trans2'
     # - 'buy_ret_act_trans2_log'
-    - 'buy_per_ret_log'
-    - 'buy_per_ret'
+    # - 'buy_per_ret_log'
+    # - 'buy_per_ret'
+    # - 'buy_ret_act_trans2_23'
+    # - 'buy_ret_act_23'
+    # - 'exce_buy_per_is'
+    # - 'exce_buy_per_os'
+    # # - 'exce_buy_per_is_trans2'
+    # - 'exce_buy_per_os_trans2'
 
- 
- 
+    # 十一月
+    # - 'buy_s_ret'
+    # - 'buy_ls_ratio_ret' 很不错
+    # - 'buy_ls_per_ratio_ret'
+    # - 'buy_l_vol_per_ratio_ret'
+    # - 'buy_l_s_per_ratio_ret'
+    # - 'buy_ls_per_ratio_ret_log'
+    # - 'netbuy_per_log_demed'
+    # - 'netbuy_per_log_demed_log' 有点不好说 感觉有点过拟合
+    # - 'net_buy_per_r10std' 
+    # - 'buy_per_ret_corr' 
+    # - 'net_buy_per_ret_corr'
+    # - 'netbuy_per'
+    # - 'sell_l_ret_log'
+    # - 'buy_l_ret_log'
+    # - 'buy_sell_per_nightret'
+    # - 'buy_sell_per_nightret_log'
+    # - 'buy_sell_per_nightret_twist_log'
+
+    # 风格因子 /mnt/datadisk2/aglv/aglv/aglv_factor/style_factor
+    # - 'momentum20'
+    # - 'log_mkt_cap'
+
+  # bs_book3 Nov-11th
+  # - 'buy_lact_l_ratio'
+  # - 'net_lact_log'
+  # - 'net_lact'
+  # - 'buy_lact_pvol_corr'
+  # - 'buy_l_s_corr'
+  # - 'buy_sell_l_ratio' 大单买入强度的代理变量 还不错
+  # - 'buy_l_act_nighgtret_corr_r20' 不行
+  # - 'buy_sell_l_ratio_nightret_ratio'
+  # - 'buy_sell_l_ratio_nightret_prod'
+  # - 'buy_l_order_act_mktovermean'
+  # - 'buy_l_order_act'
+  # - 'bsratio_mkt_prod'
+  # - 'netbuy_per'
+  # - 'bsratio_morn3per_prod'
+  # - 'morn30volper'
+  # - 'bsratio_morn3per_prod_log' 还行 把之前bslratio的趋势扭转
+  # - 'netbuy_per_morn30_prod'
+  # # - 'netbuy_per_r20mean'
+  # - 'netbuy_per_r20mean_morn30ret_prod'
+  # - 'netbuy_per_mkt_cri1'
+  # - 'netbuy_per_r20mean_ret20std_ratio'
+  - 'bsratio_morn3per_prod_log_ret20std_ratio'
+
 
   delay_days:
   - 1

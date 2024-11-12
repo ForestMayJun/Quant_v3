@@ -190,3 +190,12 @@ def factor_distribution_plot(data):
     plt.legend()
 
     plt.show()
+
+def drop_3sigma(data:pd.DataFrame):
+    def zs(data:pd.DataFrame):
+        return ((data.T - data.mean(axis=1)) / (data.std(axis=1))).T
+    data_zs = zs(data)
+    return data_zs.applymap(lambda x: x if abs(x) < 3 else 3* x/abs(x))
+
+def zs(data:pd.DataFrame):
+    return ((data.T - data.mean(axis=1)) / (data.std(axis=1))).T
