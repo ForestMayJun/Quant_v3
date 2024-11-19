@@ -28,8 +28,8 @@ factor_evaluator:
     password: "In9SEts5T65g"
 
 eval_job:
-  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/bs_book3/
-  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/bs_book3/
+  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/new_pvol/
+  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/new_pvol/
   num_grp_pnl: 10
   num_grp_ic: 5
   factor_name:
@@ -231,6 +231,7 @@ eval_job:
     # 风格因子 /mnt/datadisk2/aglv/aglv/aglv_factor/style_factor
     # - 'momentum20'
     # - 'log_mkt_cap'
+    # - 'ret_mon20_olsresid'
 
   # bs_book3 Nov-11th
   # - 'buy_lact_l_ratio'
@@ -254,7 +255,39 @@ eval_job:
   # - 'netbuy_per_r20mean_morn30ret_prod'
   # - 'netbuy_per_mkt_cri1'
   # - 'netbuy_per_r20mean_ret20std_ratio'
-  - 'bsratio_morn3per_prod_log_ret20std_ratio'
+  # - 'bsratio_morn3per_prod_log_ret20std_ratio'
+  # - 'bsratio_morn30ret_olsresid'
+  # - 'morn30_ret_volper_olsresid'
+  # - 'clo_avg_p_ret'
+  # - 'log_buy_l_raito_ret'
+
+  # 价量 new_pvol
+  # - 'vol_over2std_per'
+  # - 'vol_ret_over1std_per'
+  # - 'vol_ret_over1std_per_r1mean'
+  # - 'vol_over1std_per_blorder_ratio_log'
+  # - 'p_vol_lag_corr'
+  # - 'vol_p_over1std_symbol_r10mean_ratio'
+  # - 'vol_p_over1std_symbol_r10mean_r10std_ratio'
+  # - 'p_log_vol_dis_std'
+  # - 'p_log_vol_dis_std_r10mean'
+  # - 'p_log_vol_dis_std_de10mean' 还不错
+  # - 'p_logvol_agg_dis_std'
+  # - 'p_logvol_agg_dis_std_r10mean'
+  # - 'p_logvol_agg_dis_std_de10mean'
+  # - 'p_logvol_agg_dis_std_mean_ratio_r10mean'
+
+  # - 'p_volmax_clo_ret'
+  # - 'p_volmax_ret'
+  # - 'p_volmax_r10mean'
+  # - 'p_volmax_r10std' 上面四个 空头组一骑绝尘
+
+  # - 'rsrs_10'
+  # - 'rsrs_10_slope'
+  # - 'vol_over1std_per_agg5'
+  # - 'rsrs_20' 还不错 跟10天的差别不大
+  # - 'rsrs_20_open_clo' 不行
+
 
 
   delay_days:

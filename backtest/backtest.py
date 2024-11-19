@@ -313,6 +313,40 @@ def ic_plot(factor, ret):
 
     plt.show()
 
+def multiporcessing_generate_factor(data):
+    '''
+    传入multiindex对象, level1-InstrumentID, level2-日频data, columns为日频价量数据, 可以多列
+    '''
+    shift_day = 0
+    r_win = 20
+    n_processing = 64
+
+    def _handle_stockly(data_stock: pd.DataFrame, r_win=r_win):
+        def _f(x: pd.Series):
+            pass
+
+        return data_stock['close'].rolling(r_win).apply(_f)
+
+    def process_group(group, r_win=15):
+        instrument_id, group_data = group
+        return (instrument_id, _handle_stockly(group_data, r_win))
+
+    def _price_vol_weight_corr_v1(data: pd.DataFrame, n_processes=n_processing):
+        grouped = list(data.groupby(level='InstrumentID'))
+        with multiprocessing.Pool(processes=n_processes) as pool:
+            results = list(tqdm(pool.imap(process_group, grouped), total=len(grouped)))
+
+        factor_list = []
+        for instrument_id, factor in results:
+            factor_df = pd.DataFrame(factor.values, index=factor.index.get_level_values('date'), columns=[factor.index[0][0]])
+            factor_list.append(factor_df)
+
+        factor = pd.concat(factor_list, axis=1)
+
+        return factor.T
+    
+    return _price_vol_weight_corr_v1(data)
+
 
 
 
