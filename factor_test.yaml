@@ -1,0 +1,399 @@
+factor_evaluator:
+  cache_data_path: /mnt/data/quant_data/factor_data
+  univ_data_path: /mnt/data/quant_data/stock_universe/
+  target_univ: "stock_universe"
+  start_date: "2021-01-01"
+  end_date: "2023-12-31"
+  max_parallel: 40
+  target_exec_time_point:
+    - "09:30"
+    # - "10:00"
+    - "10:30"
+    # - "11:00"
+    # # - "13:00"
+    # - "13:30"
+    - "14:00"
+    # - "14:30"
+  price_type:
+    # - "1m_twap"
+    - "1m_vwap"
+    # - "5m_vwap"
+    # - "10m_vwap"
+    - "30m_vwap"
+    # - "to_close_vwap"
+  clickhouse_layer:
+    host: data_chdb.shifengamc.com
+    port: "9000"
+    user: "zyzhang"
+    password: "In9SEts5T65g"
+
+eval_job:
+  factor_data_path: /mnt/datadisk2/aglv/aglv/aglv_factor/nnnew_pvol/
+  output_dir: /mnt/datadisk2/aglv/aglv/aglv_factor_test/nnnew_pvol/
+  num_grp_pnl: 10
+  num_grp_ic: 5
+  factor_name:
+    # - 'turn_cvar_posi_noavg_21_23_min'
+    # - 'turn_cvar_posi_noavg_21_23_destop_min'
+    # - 'turn_cvar_posi_mul-ret-abs_noavg_21_23_destop_min'
+    # - 'turn_cvar_posi_mul-ret__noavg_21_23_destop_min'
+    # - 'turnstd_r5mean_avg20d_21_23min'
+    # - 'turnstd_agg5min_noavg_21_23_min'
+    # - 'turn_diffabs_agg10min_noavg_21_23_min'
+    # - 'nightret_r3mean'
+    # - 'ret_turn_corr_21_min'
+    # - 'ret_turn_corr_spearman_21_min'
+    # - 'ret_turn_corr_agg10_21_min'
+    # - 'p_vol_corr_r15_daily'
+    # - 'close_vol_shift_corr_cwin_15_swin_5'
+    # - 'price_vol_weight_corr_v2_ret0_r15_day'
+
+    # - 'sigmoid_ret_vol_corr_r15'
+    # - 'sigmoid_ret_r15sum_vol_corr_r15'
+    # - 'sigmoid_indayret_r15sum_vol_corr_r15'
+    # - 'sigmoid_nightret_r15sum_vol_corr_r15'
+    # - 'sigmoid_nightret_v2_r15sum_vol_corr_r15'
+    # - 'relu_nightret_r15sum_vol_corr_r15'
+    # - 'relu_indayret_r15sum_vol_corr_r15'
+    # - 'nightret_r15sum_vol_corr_r15'
+    # - 'indayret_r15sum_vol_corr_r15'
+    # - 'nightret_r15prod_vol_corr_r15'
+    # - 'tanh_nightret_r15sum_vol_corr_r15'
+    # - 'tanh_nightret_r15sum_vol_zs_corr_r15'
+    # - 'relu_nightret_r15sum_vol_zs_corr_r15'
+    # - 'relu_nightret_r15mean_vol_zs_corr_r15' -不粗 记住fa1
+    # - 'relu_nightret_vol_zs_corr_r15'
+    # - 'sigmoid_nightret_vol_zs_corr_r15'
+    # - 'abs_nightret_r15mean_vol_zs_corr_r15' 
+    # - 'leakyrelu_0.1_nightret_r15mean_vol_zs_corr_r15'
+    # - 'leakyrelu_0.1_indayret_r15mean_vol_zs_corr_r15'
+    # - 'relu_nightret_r30mean_vol_zs_corr_r30'
+    # - 'relu_nightret_r5mean_vol_zs_corr_r15'
+    # - 'relu_nightret_r5mean_vol_zs_dot_r15' - 还不错 多空两天都有表现 corrwith fa1 = 0.08
+    # - 'relu_nightret_r15mean_vol_zs_p2dot_r15' - 没什么用
+    # - 'relu_nightret_r15mean_pow3_vol_zs_dot_r15' - 没用
+    # - 'relu_nightret_r15mean_pow3_vol_zs_cos_r15' - 还行 效果类似corr因子
+    # - 'negrelu_nightret_r15mean_vol_zs_corr_r15' -还行 多头因子 但是跟fa1 corr=-0.7
+    # - 'leakyrelu_0.01_nightret_r15mean_vol_zs_corr_r15' -还行 corrwith fa1 = 0.59
+    # - 'relu_nightret_r15mean_vol_zs_shift1_corr_r15' - 效果不如不shift
+    # - '1or-1_nightret_r15mean_vol_zs_shift1_corr_r15'
+    # - 'true_relu_nightret_r15mean_vol_zs_shift1_corr_r15' - 一般般 不如fa1
+    # - 'true_relu_nightret_r15sum_vol_zs_shift1_corr_r15'
+    # - 'relu_indayret_r15sum_vol_zs_dot_r15' -貌似还行
+    # - 'relu_nightret_r5mean_vol_zs_corr_shift2_r15' -不行 shift之后效果明显变差
+    
+    # - 'relu_night-inday_ret_r15mean_vol_zs_corr_r15'
+    # - 'relu_indayret_r15sum_relu_vol_zs_dot_r15'
+
+    # - 'min30_reverse_multi'
+    # - 'cvar_l-r_ret_r30'
+    # - 'night_ret_cvar_r20_0.9.neg'
+    # - 'ret20power_night_ret_cvar_r20_0.9.neg'
+    # - 's1_ret20power_night_ret_cvar_r20_0.9.neg'
+    # - 'vol20power_night_ret_cvar_r20_0.9.neg'
+    # - 'retstd20power_night_ret_cvar_r20_0.9.neg'
+    # - 'vol20_relu_nightret_r5mean_vol_zs_dot_r15'
+    # - 'retstd20_relu_nightret_r5mean_vol_zs_dot_r15'
+    # - 'ret30min_cvar_09_r20_low'
+    # - 'turn_std20'
+    # - 'ret20_turn_std20'
+    # - 'asym_p_series_r20'
+    # - 'ret20_asym_p_series_r20'
+    # - 'vol20_asym_p_series_r20'
+    # - 'afno30_ret_cvar_neg_09_r20'
+    # - 'afno30_ret_cvar_neg_09_r20'
+    # - 'afno30_ret_asym_neg_09_r20'
+    # - 'morn_afno_30_ret_r20corr' 还不错 很稳定
+    # - 'night_afno10min_ret_r20corr'
+    # - 'vol20_morn_afno_30_ret_r20corr'
+    # - 'vol20std_morn_afno_30_ret_r20corr'
+    # - 'pca_10feat_to2_feat1'
+    # - 'pca_10feat_to2_feat2'
+    # - 'inday_ret'
+    # - 'night_s1_afno30min_ret_r20corr'
+    # - 'night_r30mean_s1_afno30min_ret_r20corr'
+
+    # - 'buy_mean_devide_std_r20' 还不错 负向因子
+    # - 'b_ane_s_square_sum'
+    # - 'b_ane_s_square_sum_r1mean'
+    # - 'buy_max_devide_std_r20'
+    # - 'ret20_b_ane_s_square_sum_r1mean'
+    # - 'xl_b_ane_s_square_sum_r10mean'
+
+    # - 'b_s_xl_ratio'
+    # - 'b_s_l_ratio' 这两个都不行
+    # - 'b_r5_max_std_ratio' 这个还可以 比下面连个好
+    # - 'b_r10_max_std_ratio'
+    # - 'b_r20_max_std_ratio'
+    # - 'b_r5_min_std_ratio' 这个略好一点
+    # - 'b_r10_min_std_ratio'
+    # - 'b_r20_min_std_ratio'
+    # - 'b_r5_std_ratio'
+    # - 'b_r10_std_ratio' 这个比较好 还行
+    # - 'b_r20_std_ratio'
+    # - 'b_b_act_l_ratio'
+    # - 'b_b_act_l_ratio_r10_mean' 还行 难得的多头因子
+    # - 'b_act_r5_std_ratio'
+    # - 'b_act_r10_std_ratio' 不错不错 曲线很稳定
+    # # - 'b_act_r20_std_ratio'
+    # - 's_act_r5_std_ratio'
+    # - 's_act_r10_std_ratio'
+    # - 's_act_r20_std_ratio'
+    # - 'buy_l_s_ratio' 有点过于稳了 负向因子 大买单和小买单的比值
+    # - 'buy_l_s_ratio_r5_std_ratio'
+    # - 'buy_l_s_ratio_r10_std_ratio'
+    # - 'buy_l_s_ratio_r20_std_ratio' 还不错 比原始数据略有增强
+    # - 'buy_l_order_ret20_ratio'
+    # - 'buy_l_order_ret20_ratio_r10sd_ratio' 这两个都不太行 本来想过滤掉ret20的影响的
+    # - 'buy_l_order_corr_ret' 完全不行
+    # - 'exce_buy_l_order'  下面四个是一组  非常奇怪 没有标准化的因子竟然效果更好
+    # - 'exce_buy_l_order_r10_std_ratio' 每组稳定 但是顺序不对
+    # - 'exce_buy_l_order_demean'
+    # - 'exce_buy_l_order_demean_r10_std_ratio'
+    # - 'exce_buy_l_order_per'
+    # - 'exce_buy_s_order'
+    # - 'exce_ret_buy_l_order_demean'
+    # - 'exce_ret_buy_l_order'
+
+    # - 'cd_exce_ret_buy_l_order_demean'
+    # - 'buy_l_order_act_demean'
+    # - 'neu_ret_buy_l_order_act_demean'
+    # - 'buy_l_order_ret20_std_ratio' 垃圾
+    # - 'buy_l_order_vol20_std_ratio' 垃圾
+    # - 'buy_l_minu_s_order_vol_ratio'
+    # - 'buy_l_order_demean_mul_r10_std'
+    # - 'buy_l_order_demean_devid_r10_std'
+    # - 'last30min_ret'
+    # - 'buy_l_act_r3_mean_std_ratio'
+    # - 'buy_l_act_r5_mean_std_ratio'
+    # - 'buy_l_act_r10_mean_std_ratio'
+    
+    # 研究扭转因子  /fa_transform/
+    # - 'exce_l_buy'
+    # - 'exce_l_buy_r5mean_ratio'
+    # - 'exce_buy_l_per' 还不错 难得的强空头性因子
+    # - 'exce_buy_l_per_overmean'
+    # - 'exce_buy_l_log' 取对数后效果明显提升
+    # - 'exce_buy_l_abs_log'
+    # - 'exce_buy_l_per_log' 很一般
+    # - 'pure_buy_l'
+    # - 'pure_buy_l_per' 和上面是非常神奇的两个因子，组间清晰组别不清晰
+    # - 'pure_buy_l_log'
+    # - 'pure_buy_l_abs_log'
+    # - 'pure_buy_l_per_abs_log'
+    # - 'pure_buy_l_per_log'
+    # - 'pure_buy_l_per_log_trans'
+    # - 'pure_buy_l_per_log_trans_os'
+    # - 'pure_buy_l_per_log_trans_os19to20'
+    # - 'pure_b_os_log'
+    # - 'pure_buy_l_per_log_trans'
+    # - 'pure_ret_buy_is'
+    # - 'pure_ret_buy_is_log' 这两个很垃圾
+    # - 'pure_buy_ret_log' 还行 21年无表现 22年还可以
+    # - 'buy_ret'
+    # - 'buy_ret_act'
+    # - 'buy_ret_act_log' 不错
+    # - 'buy_ret_act_os_log'
+    # - 'buy_ret_act_trans'
+    # - 'buy_ret_act_r10mean'
+    # - 'buy_ret_act_r5mean'
+    # - 'buy_ret_act_r3mean' 上面这三个空头性有点强
+    # - 'buy_ret_act_trans2'
+    # - 'buy_ret_act_trans2_log'
+    # - 'buy_per_ret_log'
+    # - 'buy_per_ret'
+    # - 'buy_ret_act_trans2_23'
+    # - 'buy_ret_act_23'
+    # - 'exce_buy_per_is'
+    # - 'exce_buy_per_os'
+    # # - 'exce_buy_per_is_trans2'
+    # - 'exce_buy_per_os_trans2'
+
+    # 十一月
+    # - 'buy_s_ret'
+    # - 'buy_ls_ratio_ret' 很不错
+    # - 'buy_ls_per_ratio_ret'
+    # - 'buy_l_vol_per_ratio_ret'
+    # - 'buy_l_s_per_ratio_ret'
+    # - 'buy_ls_per_ratio_ret_log'
+    # - 'netbuy_per_log_demed'
+    # - 'netbuy_per_log_demed_log' 有点不好说 感觉有点过拟合
+    # - 'net_buy_per_r10std' 
+    # - 'buy_per_ret_corr' 
+    # - 'net_buy_per_ret_corr'
+    # - 'netbuy_per'
+    # - 'sell_l_ret_log'
+    # - 'buy_l_ret_log'
+    # - 'buy_sell_per_nightret'
+    # - 'buy_sell_per_nightret_log'
+    # - 'buy_sell_per_nightret_twist_log'
+
+    # 风格因子 /mnt/datadisk2/aglv/aglv/aglv_factor/style_factor
+    # - 'momentum20'
+    # - 'log_mkt_cap'
+    # - 'ret_mon20_olsresid'
+
+  # bs_book3 Nov-11th
+  # - 'buy_lact_l_ratio'
+  # - 'net_lact_log'
+  # - 'net_lact'
+  # - 'buy_lact_pvol_corr'
+  # - 'buy_l_s_corr'
+  # - 'buy_sell_l_ratio' 大单买入强度的代理变量 还不错
+  # - 'buy_l_act_nighgtret_corr_r20' 不行
+  # - 'buy_sell_l_ratio_nightret_ratio'
+  # - 'buy_sell_l_ratio_nightret_prod'
+  # - 'buy_l_order_act_mktovermean'
+  # - 'buy_l_order_act'
+  # - 'bsratio_mkt_prod'
+  # - 'netbuy_per'
+  # - 'bsratio_morn3per_prod'
+  # - 'morn30volper'
+  # - 'bsratio_morn3per_prod_log' 还行 把之前bslratio的趋势扭转
+  # - 'netbuy_per_morn30_prod'
+  # # - 'netbuy_per_r20mean'
+  # - 'netbuy_per_r20mean_morn30ret_prod'
+  # - 'netbuy_per_mkt_cri1'
+  # - 'netbuy_per_r20mean_ret20std_ratio'
+  # - 'bsratio_morn3per_prod_log_ret20std_ratio'
+  # - 'bsratio_morn30ret_olsresid'
+  # - 'morn30_ret_volper_olsresid'
+  # - 'clo_avg_p_ret'
+  # - 'log_buy_l_raito_ret'
+  # - 'buy_act_log_mean_std_ratio'
+  # - 'buy_l_log_std_ratio'
+  # - 'buy_l_s_ratio_ret'
+  # - 'test1'
+  # - 'test2'
+  # - 'test3'
+
+  # 价量 new_pvol
+  # - 'vol_over2std_per'
+  # - 'vol_ret_over1std_per'
+  # - 'vol_ret_over1std_per_r1mean'
+  # - 'vol_over1std_per_blorder_ratio_log'
+  # - 'p_vol_lag_corr'
+  # - 'vol_p_over1std_symbol_r10mean_ratio'
+  # - 'vol_p_over1std_symbol_r10mean_r10std_ratio'
+  # - 'p_log_vol_dis_std'
+  # - 'p_log_vol_dis_std_r10mean'
+  # - 'p_log_vol_dis_std_de10mean' 还不错
+  # - 'p_logvol_agg_dis_std'
+  # - 'p_logvol_agg_dis_std_r10mean'
+  # - 'p_logvol_agg_dis_std_de10mean'
+  # - 'p_logvol_agg_dis_std_mean_ratio_r10mean'
+
+  # - 'p_volmax_clo_ret'
+  # - 'p_volmax_ret'
+  # - 'p_volmax_r10mean'
+  # - 'p_volmax_r10std' 上面四个 空头组一骑绝尘
+
+  # - 'rsrs_10'
+  # - 'rsrs_10_slope'
+  # - 'vol_over1std_per_agg5'
+  # - 'rsrs_20' 还不错 跟10天的差别不大
+  # - 'rsrs_20_open_clo' 不行
+
+  # - 'conti_up_T30_21_23_min'
+  # - 'cvar_neg_0.9_22_24_min'
+  # - 'inaday_cvar_neg_0.9_21_23_min'
+  # - 'longshort_v3_vol_ret_w15_21_23_min'
+  # - 'lowstd_highret_v1_min'
+
+  # new_pvol
+  # - 'buy_vol_log_r10_ols_slope'
+  # - 'ret5_minus_ret20'
+  # - 'nightret_5_minus_20'
+  # - 'ret_pow2_r10mean'
+  # - 'buy_vol_log_r10_ols_resid'
+  # - 'buy_l_log_vol_log_ratio_linear_sum'
+  # - 'buy_l_log_vol_log_ratio'
+  # - 'buy_l_log_ret_sigmoid_powsum'
+  # - 'buy_log_sigmoidret_r5ols_slope'
+  # - 'volmin_log_zs_skew'
+  # - 'volmin_log_zs_kurt'
+  # - 'volmin_log_zs_median'
+  # - 'volmin_log_zs_morn30_minus_tail30_mean'
+  # - 'volmin_log_zs_oer1std_minus_lower1std'
+  # - 'volmin_log_zs_oer1std_std_devide_lower1std'
+  # - 'pmin_upline_wholebar_ratio'
+  # - 'below_pcloday_vol_per'
+  # - 'over_pcloday_vol_per'
+  # - 'below_pcloday_vol_per_r5std'
+  # - 'below_popenday_vol_per_rmean'
+  # - 'tail10ret_lastvol_per'
+  # - 'last10ret_last10vol_per'
+  # - 'last10ret_last10vol_per_r5mean'
+  # - 'lase10ret_last10vol_corr'
+  # - 'lase10ret_last10vol_corr_r5mean'
+  # - 'nightret_morn1volpers1ret'
+  # - 'good_luck_openret'
+  # - 'corr_with_hs300_r20'
+  # - 'min_openret_vollog_dot'
+
+  # - 'volmin_fft_max10_mean_log'
+  # - 'volmin_fft_max1_10_mean_log'
+  # - 'pmin_fft_max1_10_mean_log'
+  # - 'volmin_fft_over_mean1std_inv_std'
+  # - 'volmin_fft_over_mean1std_inv_skew'
+  # - 'volmin_fft_over_mean1std_inv_mean_std_ratio'
+  # - 'volmin_fft_over_mean1std_inv_std2'
+  # - 'volmin_std_fft_over_mean1std_inv_std_ratio'
+  # - 'openret_std_fft_inv_std_ratio'
+  # - 'openret_fft_corr'
+  # - 'openret_fft_corr_logvol'
+  # - 'openret_corr_logvol_r20std'
+
+  # nnew_pvol
+  # - 'pmin_fft_loc1_log'
+  # - 'volmin_fftstd_log'
+  # - 'retup_vol_per'
+  # - 'retup_vol_per_r5std'
+  # - 'retup_vol_per_r5std_r10mean'
+
+  # - 'minp_GBM_mu'
+  # - 'minp_GBM_sigma_powe2_m1'
+  # - 'minp_GBM_sigma_powe2_m2'
+  # - 'minp_GBM_sigma_powe2_r10mean'
+  # - 'minp_GBM_mu_sigma_pow2_ratio_r10mean'
+  # - 'minp_GBM_mu_sigma_ratio_r10mean'
+  # - 'minp_GBM_mu_minus_frac1_2_sigma_pow2_ratio'
+  # - 'minp_GBM_mu_minus_frac1_2_sigma_pow2_ratio_r5std'
+  # - 'minp_GBM_logret_abs_mean'
+  # - 'minp_GBM_test1'
+  # - 'minp_GBM_mu_star_r20std'
+
+  # - 'min_p_vol_volfirst_win10_sum'
+  # - 'min_p_vol_volfirst_win10__powersum'\
+  # - 'openret_fft_posi_logvol_ratio'
+  # - 'min_p_vol_volfirst_win10_sum_r20std'
+  # - 'minp_GBM_sigma_powe2_m1_neu_ax1_r20std'
+  # - 'minp_GBM_sigma_powe2_m1_r20mean_std_ratio'
+
+  # nnnew_pvol
+  # - 'min_high_low_agg10_ols_slpoe'
+  # - 'min_high_low_agg10_ols_slpoe_r10mean'
+  # - 'min_high_low_agg10_ols_slpoe_r20std'
+  # - 'minp_aag5_pstd_rank10_vol_per'
+  # - 'minp_r10_std_rank10_mean'
+  # - 'minp_r10_std_rank10_vol_per'
+  # - 'minp_r10_std_rank10_vol_per_r20std'
+  # - 'minp_r10_std_rank10_vol_per'
+  # - 'min5_high_low_ret_mean'
+  # - 'min5_high_low_ret_std'
+  # - 'min5_high_low_ret_std_r20std'
+  # - 'min5_high_low_ret_max'
+  # - 'min_high_low_ret_mean'
+  # - 'min_high_low_ret_skew'
+  - 'min5_high_low_ret_skew'
+
+  delay_days:
+  - 1
+  # - 3
+  - 5
+  # - 10
+
+# run_evaljob_local /mnt/datadisk2/aglv/aglv/lab_aglv/factor_run/factor_test.yaml
+
+# facteval-res-viewer /mnt/datadisk2/aglv/aglv/lab_aglv/factor_run/factor_test.yaml
+
